@@ -1,6 +1,6 @@
 # Customer Segmentation Project
 
-This project implements a customer segmentation pipeline using machine learning techniques, specifically KMeans and DBSCAN clustering. It includes data ingestion, validation, transformation, exploratory data analysis (EDA), model training, evaluation, and a Flask web interface for batch predictions.
+This project implements a customer segmentation pipeline using machine learning techniques, specifically KMeans and DBSCAN clustering. It includes data ingestion, validation, transformation, exploratory data analysis (EDA), model training, evaluation, a Flask web interface for batch predictions and a Streamlit application for visualization , Prediction and Business Insights.
 
 ## Project Structure
 
@@ -8,6 +8,7 @@ The project follows a modular structure:
 
 ```
 customer_segments/
+├── customer_segmentation_app.py # Main streamlit application for visualization , Prediction and Business Insights 
 ├── app.py                      # Flask application for UI and batch prediction
 ├── main.py                     # Main script to run the training pipeline
 ├── requirements.txt            # Python dependencies
@@ -112,6 +113,21 @@ The application will be available at `http://0.0.0.0:8080` (or `http://127.0.0.1
 **Note on Model and Preprocessor for Flask App:**
 The Flask app (`app.py`) expects `model.pkl` and `preprocessor.pkl` to be present in the `customer_segments/final_model/` directory. Ensure the training pipeline (`main.py`) has been run at least once to generate these files, or place pre-trained compatible files there.
 
+## 3. Streamlit Application (for Visualization, Prediction, and Business Insights)[fastest/Recommended]
+To run the Streamlit application for visualization, prediction, and business insights:
+
+```bash
+streamlit run customer_segments/customer_segmentation_app.py
+```
+how to place image here copilot : place all the images with one line description from images folder
+
+![image](./images/interface.png) description: This is the main interface of the streamlit application. 
+![image](./images/individual%20predict.png) description: This is the individual prediction interface of the streamlit application.
+![image](./images/batch%20predict.png) description: This is the batch prediction interface of the streamlit application. with k means and dbscan parameter tuning . And elbow method ,silhouette score analysis visualizations.
+![image](./images/visulaizations.png) description : Advanced visualizations for pca , features ,correlation , cluster analysis
+![image](./images/suggestions.png) description: This is the business insights interface of the streamlit application. 
+
+
 ## Core Technologies
 
 -   Python 3.x
@@ -130,14 +146,4 @@ The Flask app (`app.py`) expects `model.pkl` and `preprocessor.pkl` to be presen
 -   **Entity System:** Dataclasses (`custsegments/entity/`) for structured configuration (`config_entity.py`) and artifact (`artifact_entity.py`) management.
 -   **Modular Pipeline:** Components for each stage of the ML lifecycle, orchestrated by pipeline scripts.
 
-## Future Enhancements (Not Implemented)
 
--   Configuration management using YAML files.
--   More sophisticated EDA visualizations and automated insight extraction.
--   Hyperparameter tuning for clustering algorithms.
--   Advanced evaluation metrics or domain-specific KPIs.
--   Saving and comparing multiple model versions (e.g., both KMeans and DBSCAN artifacts clearly).
--   Asynchronous execution for the training pipeline when triggered from Flask.
--   More robust error handling and input validation in the Flask app.
--   Unit and integration tests for components and pipelines.
-```
